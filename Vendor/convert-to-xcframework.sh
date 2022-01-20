@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
-set -e -x
+set -e
 
 
 SOURCE="$1"
+
+if [[ -z "${SOURCE}" ]]; then
+	ME=$(basename "$0")
+	echo "Syntax: ${ME} Static.framework"
+	exit 1
+fi
+
 FRAMEWORK=$(basename "${SOURCE}" .framework)
 TMP=$(mktemp -d -t xcf-XXXXXXXXXX)
 
